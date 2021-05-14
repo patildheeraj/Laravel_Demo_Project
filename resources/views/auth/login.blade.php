@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>AdminLTE 3 | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -25,19 +26,19 @@
             <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
             @if (Session::get('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ Session::get('success') }}
-                    </div>
-                @endif
-                @if (Session::get('fail'))
-                    <div class="alert alert-danger alert-dismissible fade-in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ Session::get('fail') }}
-                    </div>
-                @endif
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+            @if (Session::get('fail'))
+                <div class="alert alert-danger alert-dismissible fade-in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ Session::get('fail') }}
+                </div>
+            @endif
             <form action="{{ route('auth.check') }}" method="POST">
-                @csrf
+            {{ csrf_field() }}
                 <div class="input-group mb-2">
                     <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
                     <div class="input-group-append">
@@ -70,23 +71,8 @@
                 </div>
                 </div>
             </form>
-
-            {{-- <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-            </div> --}}
-            <!-- /.social-auth-links -->
-
-            {{-- <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-            </p> --}}
             <p class="mb-0">
-                <a href="{{ route('auth.register') }}" class="text-center">Register a new membership</a>
+                <a href="{{ url('/adminregister') }}" class="text-center">Register a new membership</a>
             </p>
             </div>
             <!-- /.login-card-body -->

@@ -68,6 +68,9 @@
                                     <select class="custom-select rounded-0" name="pcategory" id="pcategory">
                                         @foreach($category as $item)
                                             <option value="{{ $item->cid }}" {{$products->pcategory == $item->cid ? 'selected' : '' }}>{{ $item->cname }}</option>
+                                            @foreach ($item->categories as $sub )
+                                                <option value="{{ $sub->cid }}" {{$products->pcategory == $sub->cid ? 'selected' : '' }}>&nbsp;--&nbsp;{{ $sub->cname }}</option>
+                                            @endforeach
                                         @endforeach
                                 </select>
                                     @error('pcategory')

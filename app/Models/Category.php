@@ -10,5 +10,10 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
     protected $primaryKey = 'cid';
-    protected $fillable = ['cname'];
+    protected $fillable = ['cname', 'slug'];
+
+    public function categories()
+    {
+        return $this->hasMany('App\Models\Category', 'parent_category_id');
+    }
 }

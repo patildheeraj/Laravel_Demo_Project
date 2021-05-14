@@ -35,10 +35,10 @@
                                 <tbody>
                                     @foreach ($data as $item)
                                         <tr>
-                                            {{-- <td>{{ $item->admin_email }}</td>
-                                            <td>{{ $item->notification_email }}</td> --}}
-                                            <td>{{ Config::get('constants.admin_email') }}</td>
-                                            <td>{{ Config::get('constants.notification_email') }}</td>
+                                            <td>{{ $item->admin_email }}</td>
+                                            <td>{{ $item->notification_email }}</td>
+                                            {{-- <td>{{ Config::get('constants.admin_email') }}</td>
+                                            <td>{{ Config::get('constants.notification_email') }}</td> --}}
                                             <td>
                                                 <a href="/admin/edit-configuration/{{$item->id}}" class="btn btn-info ">Edit</a>
                                                 <a href="/admin/delete-configuration/{{$item->id}}" class="btn btn-danger ">Delete</a>

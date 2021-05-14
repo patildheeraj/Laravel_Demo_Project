@@ -16,7 +16,8 @@ class ProductController extends Controller
 
     public function addProduct()
     {
-        $category = Category::all();
+        $category = Category::with('categories')->where(['parent_category_id' => 0])->get();
+        //$category = Category::all();
         return view('products.add-product',  compact('category'));
     }
 
@@ -57,7 +58,7 @@ class ProductController extends Controller
     public function editProduct($id)
     {
         $products = Product::find($id);
-        $category = Category::all();
+        $category = Category::with('categories')->where(['parent_category_id' => 0])->get();
         #$products = Product::join('categories', 'products.pcategory', '=', 'categories.cid')->find($id);
         return view('products.edit-product', compact('products', 'category'));
     }

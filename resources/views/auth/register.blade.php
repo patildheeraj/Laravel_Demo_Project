@@ -105,7 +105,7 @@
                 </div>
                 </div>
             </form>
-            <a href="{{ route('auth.login') }}" class="text-center">I already have a account, sign in</a>
+            <a href="{{ url('adminlogin') }}" class="text-center">I already have a account, sign in</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

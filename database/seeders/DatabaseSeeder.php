@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        // Role::create(['role_name' => 'Super Admin']);
-        // Role::create(['role_name' => 'Admin']);
-        // Role::create(['role_name' => 'Inventory Manager']);
-        // Role::create(['role_name' => 'Order Manager']);
-        // Role::create(['role_name' => 'Customer']);
+        Role::create(['role_name' => 'Super Admin']);
+        Role::create(['role_name' => 'Admin']);
+        Role::create(['role_name' => 'Inventory Manager']);
+        Role::create(['role_name' => 'Order Manager']);
+        Role::create(['role_name' => 'Customer']);
         // Category::create(['cname' => 'Laptop']);
         // Category::create(['cname' => 'Car']);
         // Category::create(['cname' => 'Mobile']);

@@ -66,6 +66,10 @@
                                   <option value="">Select Category</option>
                                   @foreach ($category as $item)
                                     <option value="{{ $item->cid }}">{{ $item->cname }}</option> 
+
+                                    @foreach ($item->categories as $sub )
+                                        <option value="{{ $sub->cid }}">&nbsp;--&nbsp;{{ $sub->cname }}</option>
+                                    @endforeach
                                   @endforeach                      
                                 </select>
                                 @error('pcategory')

@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header text-center text-purple text-bold text">
-                            Category List
+                            Product List<a href="/admin/add-product" class="btn-sm btn-outline-primary float-right">Add</a>
                         </div>
                         <div class="card-body">
                             @if (Session::has('product_deleted'))
@@ -39,7 +39,7 @@
                                         <tr>
                                             <td>{{ $item->pname }}</td>
                                             <td><img src="{{asset('product_images')}}/{{$item->pimage}}" style="max-width: 100px;"/></td>
-                                            <td>{{ $item->pprice }}</td>
+                                            <td>{{ $item->pprice }} Rs.</td>
                                             <td>{{ $item->cname }}</td>
                                             <td>
                                                 <a href="/admin/edit-product/{{$item->pid}}" class="btn btn-info ">Edit</a>

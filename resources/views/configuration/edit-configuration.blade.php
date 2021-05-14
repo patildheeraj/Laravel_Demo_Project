@@ -16,7 +16,7 @@
                 <div class="col-md-6">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Update Configuration</h3>
+                            <h3 class="card-title">Edit Configuration</h3>
                         </div>
                         <form action="{{ route('configuration.update') }}" method="POST">
                             @csrf
@@ -29,15 +29,15 @@
                                 @endif
                                 <div class="form-group mb-0">
                                     <label for="admin_email">Admin Email</label>
-                                    <input type="hidden" name="id" value="{{ $data->id }}">
-                                    <input type="text" name="admin_email" class="form-control mb-2" id="admin_email" value="{{ $data->admin_email }}">
+                                    {{-- <input type="hidden" name="id" value="{{ $data->id }}"> --}}
+                                    <input type="text" name="admin_email" class="form-control mb-2" id="admin_email" value="{{ $data[0] }}">
                                     @error('admin_email')
                                         <span class="text-danger font-weight-light">{{$message}}</span>        
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0">
                                     <label for="notification_email">Notification Email</label>
-                                    <input type="text" name="notification_email" class="form-control mb-2" id="notification_email" value="{{ $data->notification_email }}">
+                                    <input type="text" name="notification_email" class="form-control mb-2" id="notification_email" value="{{ $data[1] }}">
                                     @error('notification_email')
                                         <span class="text-danger font-weight-light">{{$message}}</span>        
                                     @enderror

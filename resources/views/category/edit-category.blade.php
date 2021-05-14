@@ -18,7 +18,7 @@
                     <div class="card-header">
                     <h3 class="card-title">Update Category</h3>
                     </div>
-                    <form action="{{ route('category.update') }}" method="POST">
+                    <form action="{{ route('category.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             @if (Session::has('category_updated'))
@@ -32,9 +32,45 @@
                                 <input type="hidden" name="cid" value="{{ $category->cid }}">
                                 <input type="text" name="cname" class="form-control mb-2" id="cname" value="{{ $category->cname }}">
                                 @error('cname')
-                                <span class="text-danger font-weight-light">{{$message}}</span>        
-                            @enderror
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
                             </div>
+                            <div class="form-group mb-0">
+                                <label for="parent_category_id">Select Parent Category</label>
+                                <select name="parent_category_id" class="form-control mb-2" id="parent_category_id">
+                                    <option value="0">Parent Category</option>
+                                    @foreach ($parent_category as $item)
+                                        <option value="{{ $item->cid }}" {{ $category->parent_category_id == $item->cid? 'selected': '' }}>{{ $item->cname }}</option>
+                                    @endforeach
+                                </select>
+                                @error('parent_category_id')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+                            </div>
+                            <div class="form-group mb-0">
+                                <label for="slug">Category Slug</label>
+                                <input type="text" name="slug" class="form-control mb-2" id="slug" value="{{ $category->slug }}">
+                                @error('slug')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                    <label for="file">Category Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control" name="file" />                                       
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>                                    
+                                    </div>
+                                    @if($category->category_image)
+                                        <img id="original" src="{{asset('category_images')}}/{{$category->category_image}}" height="100" width="120">
+                                    @endif
+                                    @error('file')
+                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    @enderror
+                                </div>
                         </div>
 
                         <div class="card-footer">

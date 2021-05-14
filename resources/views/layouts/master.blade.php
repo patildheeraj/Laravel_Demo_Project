@@ -47,6 +47,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('/admin-logout') }}" class="nav-link">Logout</a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->
@@ -97,7 +100,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Welcome Admin</a>
+          <a href="#" class="d-block">Welcome {{ Session::get('Logged_Email') }}</a>
         </div>
       </div>
 
@@ -160,7 +163,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
                 Category Management
                 <i class="fas fa-angle-left right"></i>
@@ -205,14 +208,14 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+            <a href="{{ route('configuration.edit') }}" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
               <p>
                  Configuration
-                <i class="fas fa-angle-left right"></i>
+                {{-- <i class="fas fa-angle-left right"></i> --}}
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            {{-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('configuration.add') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -223,6 +226,53 @@
                 <a href="{{ route('configuration.fetch') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Configuration List</p>
+                </a>
+              </li>
+            </ul> --}}
+          </li>
+                    <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                 Banner
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('Banner.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Banner</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('Banner.fetch') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Banner List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tag"></i>
+              <p>
+                 Coupon
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('coupon.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Coupon</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('coupon.fetch') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Coupon List</p>
                 </a>
               </li>
             </ul>

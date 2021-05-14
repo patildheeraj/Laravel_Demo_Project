@@ -66,6 +66,7 @@ class MainContraoller extends Controller
         } else {
             if (Hash::check($request->password, $userInfo->password)) {
                 $request->session()->put('LoggedUser', $userInfo->id);
+                $request->session()->put('Logged_Email', $userInfo->email);
                 return redirect('/admin');
             } else {
                 return back()->with('fail', '**Password Incorrect!');

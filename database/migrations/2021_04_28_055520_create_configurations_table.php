@@ -15,8 +15,8 @@ class CreateConfigurationsTable extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->string('admin_email');
-            $table->string('notification_email');
+            $table->string('parameter_key');
+            $table->string('parameter_value');
             $table->timestamps();
         });
     }
