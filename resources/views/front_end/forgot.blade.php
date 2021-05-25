@@ -1,7 +1,18 @@
+<style>
+	#btn1{
+		margin-bottom: 10px;
+	}
+</style>
 @extends('front_end.layout')
 @section('content')
       <section id="form1"><!--form-->
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Forgot Password</li>
+				</ol>
+			</div><!--/breadcrums-->
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-1">
 					<div class="login-form"><!--login form-->

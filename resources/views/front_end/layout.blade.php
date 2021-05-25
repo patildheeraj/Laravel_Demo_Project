@@ -1,3 +1,10 @@
+@php
+    namespace App\Models;
+    use Illuminate\Support\Facades\Session;
+    use App\Models\Cart;
+    $cartCount = Cart::cartCount();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +20,14 @@
     <link href="{{ asset('frontend/css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
-	{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> --}}
-       
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
+
 </head><!--/head-->
 
 <body>
@@ -49,7 +57,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -61,14 +69,14 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								
-								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="{{ url('/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{{ url('/cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="@if (session()->has('FRONT_LOGIN')!= null) {{ url('/') }} @else {{ url('/register') }} @endif"><i class="fa fa-user"></i> Register</a></li>
+
+								<li><a href="/wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
+								<li><a href="{{ url('/my-order') }}"><i class="fa fa-crosshairs"></i> My Order</a></li>
+								<li><a href="{{ url('/cart') }}"><i class="fa fa-shopping-cart"></i> Cart({{ $cartCount }})</a></li>
+								<li><a href="{{ url('/register') }}"><i class="fa fa-user"></i> Register</a></li>
 								@if (session()->has('FRONT_LOGIN')!= null)
 									<li><a href="{{ url('/account') }}"><i class="fa fa-user"></i> Account</a></li>
-									<li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
+									<li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
 								@else
 									<li><a href="@if (session()->has('FRONT_LOGIN')!= null) {{ url('/') }} @else {{ url('/login') }} @endif"><i class="fa fa-lock"></i> Login</a></li>
 								@endif
@@ -78,7 +86,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -97,13 +105,13 @@
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="{{ url('/products') }}">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
+										{{-- <li><a href="product-details.html">Product Details</a></li>  --}}
+										<li><a href="{{ url('/checkout') }}">Checkout</a></li>
+										<li><a href="{{ url('/cart') }}">Cart</a></li>
 										<li><a href="@if (session()->has('FRONT_LOGIN')!= null) {{ url('/') }} @else {{ url('/login') }} @endif">Login</a></li>
-										<li><a href="@if (session()->has('FRONT_LOGIN')!= null) {{ url('/') }} @else {{ url('/register') }} @endif">Register</a></li>  
+										<li><a href="{{ url('/register') }}">Register</a></li>
                                     </ul>
-                                </li> 
+                                </li>
 								{{-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="blog.html">Blog List</a></li>
@@ -132,90 +140,10 @@
 		</button>
 		</div>
 	@endif
-	
+
 	@yield('content')
-	
-	<footer id="footer"><!--Footer-->
-		{{-- <div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/home/iframe1.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/home/iframe2.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/home/iframe3.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/home/iframe4.png')}}" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="{{ asset('frontend/images/home/map.png')}}" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> --}}
-		
+
+	<footer id="footer">
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
@@ -247,11 +175,11 @@
 						<div class="single-widget">
 							<h2>Policies</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+								<li><a href="{{ url('/page/terms-&-condition') }}">Terms & Condition</a></li>
+								<li><a href="{{ url('/page/Privacy-Policy') }}">Privacy Policy</a></li>
+								<li><a href="{{ url('/page/Refund-Policy') }}">Refund Policy</a></li>
+								<li><a href="{{ url('/page/Billing-System') }}">Billing System</a></li>
+								<li><a href="{{ url('/page/Ticket-System') }}">Ticket System</a></li>
 							</ul>
 						</div>
 					</div>
@@ -259,29 +187,49 @@
 						<div class="single-widget">
 							<h2>About Shopper</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
+								<li><a href="{{ url('/page/about-us') }}">About Us</a></li>
+								<li><a href="{{ url('/page/about-us') }}">Careers</a></li>
+								<li><a href="{{ url('/page/about-us') }}">Store Location</a></li>
+								<li><a href="{{ url('/page/about-us') }}">Affillate Program</a></li>
+								<li><a href="{{ url('/page/about-us') }}">Copyright</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
 						<div class="single-widget">
 							<h2>About Shopper</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
+                            @if(Session::has('news_fail'))
+                                <div class="alert alert-danger alert-dismissible with-close" role="alert">
+                                    {{ session('news_fail') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @if(Session::has('news_success'))
+                                <div class="alert alert-success alert-dismissible with-close" role="alert">
+                                    {{ session('news_success') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                            @endif
+							<form action="{{ url('/newsletter') }}" class="searchform" method="POST">
+                                @csrf
+								<input type="text" name="news_email" placeholder="Your email address" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                @error('news_email')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
+                                @enderror
 								<p>Get the most recent updates from <br />our site and be updated your self...</p>
 							</form>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -290,11 +238,11 @@
 				</div>
 			</div>
 		</div>
-		
-	</footer><!--/Footer-->
-	
 
-  
+	</footer><!--/Footer-->
+
+
+
     <script src="{{ asset('frontend/js/jquery.js') }}"></script>
 	<script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('frontend/js/jquery.scrollUp.min.js') }}"></script>

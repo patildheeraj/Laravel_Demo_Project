@@ -32,6 +32,10 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="product_code">Product Code</label>
+                                    <input type="text" name="product_code" class="form-control" value="#{{ $products->product_code }}" readonly>
+                                </div>
+                                <div class="form-group">
                                     <label for="pname">Product Name</label>
                                     <input type="hidden" name="pid" value="{{ $products->pid }}">
                                     <input type="text" name="pname" class="form-control" value="{{ $products->pname }}">
@@ -39,13 +43,40 @@
                                         <span class="text-danger font-weight-light">{{$message}}</span>        
                                     @enderror
                                 </div>
+                               <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="pprice">Product Price</label>
+                                            <input type="text" name="pprice" class="form-control" value="{{ $products->pprice }}">
+                                            @error('pprice')
+                                                <span class="text-danger font-weight-light">{{$message}}</span>        
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="pstock">Product Stock</label>
+                                            <input type="number" name="pstock" class="form-control" value="{{ $products->pstock }}" placeholder="Enter Product stock">
+                                            @error('pstock')
+                                                <span class="text-danger font-weight-light">{{$message}}</span>        
+                                            @enderror
+                                        </div>
+                                    </div>
+                               </div>
                                 <div class="form-group">
-                                    <label for="pprice">Product Price</label>
-                                    <input type="text" name="pprice" class="form-control" value="{{ $products->pprice }}">
-                                    @error('pprice')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
-                                    @enderror
-                                </div>
+                                <label for="file">Product Description</label>
+                                <textarea name="description" class="form-control" placeholder="Enter Product Description">{{ $products->description }}</textarea>
+                                @error('description')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+                            </div>
+                             <div class="form-group">
+                                <label for="file">Material & Care</label>
+                                <textarea name="care" class="form-control" placeholder="Enter Product Material & care">{{ $products->care }}</textarea>
+                                @error('care')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+                            </div>
                                 <div class="form-group">
                                     <label for="file">Product Image</label>
                                     <div class="input-group">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FrontUser;
 use App\Models\NewUser;
 use App\Models\Role;
 use App\Models\User;
@@ -117,5 +118,14 @@ class UserController extends Controller
         $user = NewUser::find($id);
         $user->delete();
         return back()->with('success', 'User deleted successfully!!');
+    }
+
+    public function frontendUser()
+    {
+        $users = FrontUser::all();
+        // echo '<pre>';
+        // print_r(json_decode(json_encode($user)));
+        // die();
+        return view('users.view_front_end_user', compact('users'));
     }
 }

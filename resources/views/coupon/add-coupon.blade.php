@@ -42,8 +42,8 @@
                                             <label for="coupon_type">Coupon Type</label>
                                             <select name='coupon_type' class="custom-select rounded-0 @error('coupon_type') is-invalid @enderror" >
                                                 <option value="">Select Coupon Type</option>
-                                                <option value="fixed_value">Fixed Value</option> 
-                                                <option value="percentage">Percentage</option>                     
+                                                <option value="Fixed">Fixed Value</option> 
+                                                <option value="Percentage">Percentage</option>                     
                                             </select>
                                             @error('coupon_type')
                                                 <div class="invalid-feeedback text-danger font-weight-light">
@@ -78,24 +78,33 @@
                                     </div>
                                     
                                     <div class="col">
-                                        <label for="status">Status</label>
-                                        <br>
-                                        <div class="form-group form-check-inline">
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input @error('status') is-invalid @enderror" id="Radio1" name="status" value="1" {{ old('status')=='1' ? 'checked' : '' }}>
-                                                <label class="custom-control-label" for="Radio1">Active</label>
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input @error('status') is-invalid @enderror" id="Radio2" name="status" value="0" {{ old('status')=='0' ? 'checked' : '' }}>
-                                                <label class="custom-control-label" for="Radio2">Inactive</label>
-                                            </div>
-                                            @error('status')
+                                        <div class="form-group">
+                                            <label for="date">Expiry Date</label>
+                                            <input type="text" id="datepicker" name="date" class="form-control @error('date') is-invalid @enderror" id="minimum_purchase" value="{{ old('date') }}" placeholder="Choose Date" autocomplete="off">
+                                            @error('date')
                                                 <div class="invalid-feeedback text-danger font-weight-light">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
                                         </div>
                                     </div>
+                                </div>
+                                <label for="status">Status</label>
+                                <br>
+                                <div class="form-group form-check-inline">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input @error('status') is-invalid @enderror" id="Radio1" name="status" value="1" {{ old('status')=='1' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="Radio1">Active</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input @error('status') is-invalid @enderror" id="Radio2" name="status" value="0" {{ old('status')=='0' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="Radio2">Inactive</label>
+                                    </div>
+                                    @error('status')
+                                        <div class="invalid-feeedback text-danger font-weight-light">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary float-right">Add Coupon</button>

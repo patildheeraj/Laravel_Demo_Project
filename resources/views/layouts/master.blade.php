@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -43,9 +46,6 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/admin" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ url('/admin-logout') }}" class="nav-link">Logout</a>
@@ -101,18 +101,6 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">Welcome {{ Session::get('Logged_Email') }}</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -212,7 +200,6 @@
               <i class="nav-icon fas fa-cogs"></i>
               <p>
                  Configuration
-                {{-- <i class="fas fa-angle-left right"></i> --}}
               </p>
             </a>
             {{-- <ul class="nav nav-treeview">
@@ -269,6 +256,7 @@
                   <p>Add Coupon</p>
                 </a>
               </li>
+
               <li class="nav-item">
                 <a href="{{ route('coupon.fetch') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -276,6 +264,62 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tag"></i>
+              <p>
+                CMS Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/admin/add-cms-page') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add CMS</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url('/admin/list-cms-page') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View CMS</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('view.order') }}" class="nav-link">
+              <i class="fas fa-comments"></i>
+              <p>
+                  View Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/view-frontend-user') }}" class="nav-link">
+              <i class="fas fa-comments"></i>
+              <p>
+                 View Registered User
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('user.feedback') }}" class="nav-link">
+              <i class="fas fa-comments"></i>
+              <p>
+                 User Feedback
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/reports') }}" class="nav-link">
+              <i class="fas fa-comments"></i>
+              <p>
+                 Report
+              </p>
+            </a>
           </li>
         </ul>
       </nav>
@@ -309,7 +353,8 @@
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{{-- <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script> --}}
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -340,5 +385,13 @@
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      minDate:0,
+      dateFormat: 'dd-mm-yy',
+    });
+  } );
+  </script>
 </body>
 </html>

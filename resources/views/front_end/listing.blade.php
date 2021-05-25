@@ -59,62 +59,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Category</h2>
-						
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								@foreach ($data as $item)
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->cid }}">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											{{ $item->cname }}
-										</a>
-									</h4>
-								</div>
-								<div id="{{ $item->cid }}" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											@foreach ($item->categories as $sub)
-												
-											<li><a href="/categories-products/{{ $sub->slug }}">{{ $sub->cname }} </a></li>
-											@endforeach
-										</ul>
-									</div>
-								</div>
-								@endforeach
-							</div>
-						</div>
-						
-
-						{{-- <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                            @foreach ($category as $data)
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"><a href="#">{{ $data->cname }}</a></h4>
-                                    </div>
-							    </div>
-                            @endforeach 
-							
-						</div>--}}
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="{{ asset('frontend/images/home/shipping.jpg') }}" alt="" />
-						</div><!--/shipping-->
-					
-					</div>
+					@include('front_end.front_sidebar')
 				</div>
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
+						<h2 class="title text-center">{{ $category->cname }}</h2>
 						@foreach ($products as $item)
 							<div class="col-sm-4">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{asset('product_images')}}/{{$item->pimage}}" alt="" />
+											<img src="{{asset('product_images')}}/{{$item->pimage}}" alt="" width="200px" height="180px"/>
 											<h2>{{ $item->pprice }}</h2>
 											<p>{{ $item->pname }}</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>

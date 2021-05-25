@@ -2,8 +2,10 @@
     "cSpell.words": [
         "Authenticatable",
         "Contraoller",
+        "Delivary",
         "Dheeraj",
         "Laravel",
+        "Spatie",
         "adminlogin",
         "adminregister",
         "bimage",
@@ -18,6 +20,8 @@
         "pcategory",
         "pimage",
         "pincode",
-        "pprice"
-    ]
+        "pprice",
+        "pstock"
+    ],
+    "namespaceResolver.leadingSeparator": false
 }

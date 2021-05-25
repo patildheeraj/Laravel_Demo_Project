@@ -41,8 +41,8 @@
                                     <label for="coupon_type">Coupon Type</label>
                                     <select name='coupon_type' class="custom-select rounded-0 @error('coupon_type') is-invalid @enderror" value="{{ $data->coupon_type }}">
                                         <option value="">Select Coupon Type</option>
-                                        <option value="fixed_value" {{ $data->coupon_type == 'fixed_value'? 'selected':'' }}>Fixed Value</option> 
-                                        <option value="percentage" {{ $data->coupon_type == 'percentage'? 'selected':'' }}>Percentage</option>                     
+                                        <option value="Fixed" {{ $data->coupon_type == 'Fixed'? 'selected':'' }}>Fixed Value</option> 
+                                        <option value="Percentage" {{ $data->coupon_type == 'Percentage'? 'selected':'' }}>Percentage</option>                     
                                     </select>
                                     @error('coupon_type')
                                     <div class="invalid-feeedback text-danger font-weight-light">
@@ -67,7 +67,15 @@
                                     </div>
                                 @enderror
                                 </div>
-                                
+                                <div class="form-group">
+                                            <label for="date">Expiry Date</label>
+                                            <input type="text" id="datepicker" name="date" value="{{ $data->Exp_date }}" class="form-control @error('date') is-invalid @enderror" id="minimum_purchase" value="{{ old('date') }}" placeholder="Choose Date">
+                                            @error('date')
+                                                <div class="invalid-feeedback text-danger font-weight-light">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                 <label for="status">Status</label>
                                 <br>
                                 <div class="form-group form-check-inline">

@@ -44,7 +44,7 @@ class MainContraoller extends Controller
         $data = $admin->save();
 
         if ($data) {
-            return back()->with('success', 'New user added successfully!');
+            return redirect('/adminlogin')->with('success', 'New user added successfully!');
         } else {
             return back()->with('fail', 'Something went wrong, try again later!');
         }
@@ -66,7 +66,7 @@ class MainContraoller extends Controller
         } else {
             if (Hash::check($request->password, $userInfo->password)) {
                 $request->session()->put('LoggedUser', $userInfo->id);
-                $request->session()->put('Logged_Email', $userInfo->email);
+                $request->session()->put('Logged_Email', $userInfo->name);
                 return redirect('/admin');
             } else {
                 return back()->with('fail', '**Password Incorrect!');

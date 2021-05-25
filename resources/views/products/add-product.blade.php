@@ -38,10 +38,37 @@
                                     <span class="text-danger font-weight-light">{{$message}}</span>        
                                 @enderror
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="pprice">Product Price</label>
+                                        <input type="text" name="pprice" class="form-control" value="{{ old('pprice') }}" placeholder="Enter Product Price">
+                                        @error('pprice')
+                                            <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="pstock">Product Stock</label>
+                                        <input type="number" name="pstock" class="form-control" value="{{ old('pstock') }}" placeholder="Enter Product stock">
+                                        @error('pstock')
+                                            <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                <label for="pprice">Product Price</label>
-                                <input type="text" name="pprice" class="form-control" value="{{ old('pprice') }}" placeholder="Enter Product Price">
-                                @error('pprice')
+                                <label for="file">Product Description</label>
+                                <textarea name="description" class="form-control" placeholder="Enter Product Description">{{ old('description') }}</textarea>
+                                @error('description')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+                            </div>
+                             <div class="form-group">
+                                <label for="file">Material & Care</label>
+                                <textarea name="care" class="form-control" placeholder="Enter Product Material & care">{{ old('care') }}</textarea>
+                                @error('care')
                                     <span class="text-danger font-weight-light">{{$message}}</span>        
                                 @enderror
                             </div>

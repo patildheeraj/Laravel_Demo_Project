@@ -10,6 +10,12 @@
 @section('content')
     <section id="form1"><!--form-->
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Account</li>
+				</ol>
+			</div><!--/breadcrums-->
 			<div class="row">
 				@if (Session::get('success'))
 					<div class="alert alert-success alert-dismissible">
@@ -50,11 +56,39 @@
                                 @endforeach
                             </select>
                             <input type="text" name="pincode" placeholder="Enter pincode" value="{{ $user->pincode }}">
-							{{-- <input type="email" name="email" placeholder="Email Address" value="{{ old('email') }}"/>
-							<input type="password" name="password" placeholder="Password" value="{{ old('password') }}"/>
-							<input type="password" name="conpassword" placeholder="Confirm Password"/> --}}
 							<button type="submit" class="btn btn-default" id="btn1">Submit info</button>
 							Don't have a account? <a href="{{ url('/register') }}" class="mt-3"><Strong>Register now!</Strong></a>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					@if (Session::get('pwd'))
+						<div class="alert alert-success alert-dismissible">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							{{ Session::get('pwd') }}
+						</div>
+					@endif
+					<div class="signup-form"><!--sign up form-->
+						<h2>Update Password</h2>
+						<form action="{{ route('update.password') }}" method="POST">
+							@csrf
+							<input type="password" name="current_password" placeholder="Current password"/>
+							@error('current_password')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+							<input type="password" name="new_password" placeholder="New Password"/>
+							@error('new_password')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+							<input type="password" name="conpassword" placeholder="Confirm Password"/>
+							@error('conpassword')
+                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                @enderror
+							<button type="submit" class="btn btn-default" id="btn1">Update</button>
+							Don't remember password.<a href="{{ url('/forgot-password') }}" class="mt-3"><Strong>Forgot Password?</Strong></a>
 						</form>
 					</div><!--/sign up form-->
 				</div>

@@ -1,19 +1,20 @@
 @extends('front_end.layout')
 @section('content')	
-    @if (Session::get('success'))
-		<div class="alert alert-success alert-dismissible">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			{{ Session::get('success') }}
-		</div>
-	@endif
-	@if (Session::get('fail'))
-		<div class="alert alert-danger alert-dismissible">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			{{ Session::get('fail') }}
-		</div>
-	@endif
     <section id="slider"><!--slider-->
 		<div class="container">
+			@if (Session::get('success'))
+				<div class="alert alert-success alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					{{ Session::get('success') }}
+				</div>
+			@endif
+			@if (Session::get('fail'))
+				<div class="alert alert-danger alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					{{ Session::get('fail') }}
+				</div>
+			@endif
+
 			<div class="row">
 				<div class="col-sm-12">
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -21,9 +22,6 @@
 							@foreach ($banner as $key => $value)
 								<li data-target="#slider-carousel" data-slide-to="0" @if ($key==0)  class="active"@endif></li>
 							@endforeach
-							{{-- <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li> --}}
 						</ol>
 						<div class="carousel-inner">
 							@foreach ($banner as $key => $value)
@@ -59,51 +57,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Category</h2>
-						
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								@foreach ($data as $item)
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->cid }}">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											{{ $item->cname }}
-										</a>
-									</h4>
-								</div>
-								<div id="{{ $item->cid }}" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											@foreach ($item->categories as $sub)
-												
-											<li><a href="/categories-products/{{ $sub->slug }}">{{ $sub->cname }} </a></li>
-											@endforeach
-										</ul>
-									</div>
-								</div>
-								@endforeach
-							</div>
-						</div>
-						
-
-						{{-- <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                            @foreach ($category as $data)
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"><a href="#">{{ $data->cname }}</a></h4>
-                                    </div>
-							    </div>
-                            @endforeach
-							
-						</div> --}}
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="{{ asset('frontend/images/home/shipping.jpg') }}" alt="" />
-						</div><!--/shipping-->
-					
-					</div>
+					@include('front_end.front_sidebar')
 				</div>
 				
 				<div class="col-sm-9 padding-right">
@@ -114,10 +68,20 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<a href="#"><img src="{{asset('product_images')}}/{{$item->pimage}}" alt="" /></a>
+											<a href="{{ url('productDetail/'.$item->pid) }}"><img src="{{asset('product_images')}}/{{$item->pimage}}" alt=""  width="200px" height="180px"/></a>
 											<h2>{{ $item->pprice }} Rs.</h2>
 											<p>{{ $item->pname }}</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<form action="{{ route('add.cart') }}" method="POST">
+												@csrf
+												<input type="hidden" name="product_id" value="{{ $item->pid }}">
+												<input type="hidden" name="quantity" value="1">
+												@if ($item->pstock == 0 or $item->pstock == null)
+													<button class="btn btn-default add-to-cart" style="pointer-events: none;"><i class="fa fa-shopping-cart"></i>Out Of Stock</button>
+												@else
+													<button class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												@endif
+												
+											</form>
 										</div>
 										{{-- <div class="product-overlay">
 											<div class="overlay-content">
@@ -129,8 +93,8 @@
 									</div>
 									<div class="choose">
 										<ul class="nav nav-pills nav-justified">
-											<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-											<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+											<li><a href="{{ url('add-wishlist/'.$item->pid) }}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+											<li><a href="{{ url('productDetail/'.$item->pid) }}"><i class="fa fa-plus-square"></i>View Product</a></li>
 										</ul>
 									</div>
 								</div>

@@ -26,24 +26,38 @@
                                     <button type="button" class="close text-danger" data-dismiss="alert">×</button>
                                 </div>
                             @endif
+                             @if (Session::has('pass'))
+                                <div class="alert alert-success" role="alert">
+                                    {{Session::get('pass')}}
+                                    <button type="button" class="close text-danger" data-dismiss="alert">×</button>
+                                </div>
+                            @endif
                             <table class="table table-bordered text-center">
                                 <thead>
+                                    <th>Product Code</th>
                                     <th>Product Name</th>
                                     <th>Product Image</th>
                                     <th>Product Price</th>
+                                    <th>Product Stock</th>
+                                    <th>Product Description</th>
+                                    <th>Material & Care</th>
                                     <th>Product category</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($products as $item)
                                         <tr>
+                                            <td>#{{ $item->product_code }}</td>
                                             <td>{{ $item->pname }}</td>
                                             <td><img src="{{asset('product_images')}}/{{$item->pimage}}" style="max-width: 100px;"/></td>
                                             <td>{{ $item->pprice }} Rs.</td>
+                                            <td>{{ $item->pstock }}</td>
+                                            <td>{{ $item->description }}</td>
+                                            <td>{{ $item->care }}</td>
                                             <td>{{ $item->cname }}</td>
                                             <td>
-                                                <a href="/admin/edit-product/{{$item->pid}}" class="btn btn-info ">Edit</a>
-                                                <a href="/admin/delete-product/{{$item->pid}}" class="btn btn-danger ">Delete</a>
+                                                <a href="/admin/edit-product/{{$item->pid}}" class="btn-sm btn-info">Edit</a>
+                                                <a href="/admin/delete-product/{{$item->pid}}" class="btn-sm btn-danger ">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

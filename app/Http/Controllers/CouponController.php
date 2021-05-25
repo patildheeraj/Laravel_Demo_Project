@@ -26,6 +26,7 @@ class CouponController extends Controller
                 'coupon_type' => 'required',
                 'coupon_value' => 'required|integer',
                 'minimum_purchase' => 'required|integer',
+                'date' => 'required',
                 'status' => 'required',
             ],
             // [
@@ -42,6 +43,7 @@ class CouponController extends Controller
         $coupon_type = $request->coupon_type;
         $coupon_value = $request->coupon_value;
         $minimum_purchase = $request->minimum_purchase;
+        $Exp_date = $request->date;
         $status = $request->status;
 
         $model = new Coupon();
@@ -49,6 +51,7 @@ class CouponController extends Controller
         $model->coupon_type = $coupon_type;
         $model->coupon_value = $coupon_value;
         $model->minimum_purchase = $minimum_purchase;
+        $model->Exp_date = $Exp_date;
         $model->status = $status;
         $model->save();
 
@@ -67,6 +70,7 @@ class CouponController extends Controller
         $coupon_type = $request->coupon_type;
         $coupon_value = $request->coupon_value;
         $minimum_purchase = $request->minimum_purchase;
+        $Exp_date = $request->date;
         $status = $request->status;
 
         $model = Coupon::find($request->id);
@@ -74,6 +78,7 @@ class CouponController extends Controller
         $model->coupon_type = $coupon_type;
         $model->coupon_value = $coupon_value;
         $model->minimum_purchase = $minimum_purchase;
+        $model->Exp_date = $Exp_date;
         $model->status = $status;
         $model->save();
         return redirect()->route('coupon.fetch');
