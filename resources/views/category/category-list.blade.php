@@ -32,7 +32,7 @@
                                     <button type="button" class="close text-danger" data-dismiss="alert">×</button>
                                 </div>
                             @endif
-                            <table class="table table-bordered text-center">
+                            <table id="example2" class="table table-bordered text-center">
                                 <thead>
                                     <th>No.</th>
                                     <th>Category Name</th>
@@ -52,8 +52,8 @@
                                                 @if($item->category_image != '')
                                                     <img src="{{asset('category_images')}}/{{$item->category_image}}" style="max-width: 100px;"/></td>
                                                 @else
-                                                    -</td> 
-                                                @endif   
+                                                    -</td>
+                                                @endif
                                             <td>
                                                 <a href="/admin/edit-category/{{$item->cid}}" class="btn btn-info ">Edit</a>
                                                 <a href="/admin/delete-category/{{$item->cid}}" class="btn btn-danger ">Delete</a>
@@ -61,7 +61,10 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
+                            <div class="d-flex justify-content-center mt-3" align="center">
+                                {!! $category->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

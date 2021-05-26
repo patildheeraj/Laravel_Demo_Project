@@ -22,7 +22,7 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td><strong>Order Number:</strong> {{ $order_id }}</td>
+            <td><strong>Order Number:</strong> #{{ $order_id }}</td>
         </tr>
         <tr>
             <td>&nbsp;</td>

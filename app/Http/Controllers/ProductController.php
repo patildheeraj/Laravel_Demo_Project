@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function getProduct()
     {
-        $products = Category::join('products', 'products.pcategory', '=', 'categories.cid')->orderby('pid', 'DESC')->get();
+        $products = Category::join('products', 'products.pcategory', '=', 'categories.cid')->orderby('pid', 'DESC')->paginate(5);
         return view('products.product-list', compact('products'));
     }
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
 
     public function viewOrder()
     {
-        $orders = Order::with('orders')->orderBy('id', 'DESC')->get();
+        $orders = Order::with('orders')->orderBy('id', 'DESC')->paginate(5);
         // echo '<pre>';
         // print_r(json_decode((json_encode($orders))));
         // die();

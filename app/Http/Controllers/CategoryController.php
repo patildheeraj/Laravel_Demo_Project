@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function getCategory()
     {
-        $category = Category::all();
+        $category = Category::paginate(5);
         $num = 1;
         return view('category.category-list', compact('category', 'num'));
     }

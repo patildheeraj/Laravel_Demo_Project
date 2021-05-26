@@ -21,7 +21,7 @@ class FrontController extends Controller
     {
         $result['banner'] = DB::table('banners')->get();
         $result['category'] = DB::table('categories')->get();
-        $result['products'] = DB::table('products')->get();
+        $result['products'] = DB::table('products')->paginate(6);
         //print_r($result['products']);
         //die();
         $data = Category::with('categories')->where(['parent_category_id' => 0])->get();
@@ -343,9 +343,6 @@ class FrontController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->all();
-            // echo '<pre>';
-            // print_r(json_decode(json_encode($data)));
-            // die();
             $user_id = Session::get('FRONT_ID');
             $user_email = Session::get('FRONT_Email');
             $CouponAmount = Session::get('CouponAmount');
@@ -355,7 +352,10 @@ class FrontController extends Controller
                 $CouponCode  = 'Not Applied';
             }
 
-            $shippingDetail = DelivaryAddress::where('user_email', $user_email)->first();
+            $shippingDetail = FrontUser::where('email', $user_email)->first();
+            // echo '<pre>';
+            // print_r(json_decode(json_encode($shippingDetail)));
+            // die();
             $order = new Order();
             $order->user_id = $user_id;
             $order->user_email = $user_email;

@@ -126,6 +126,29 @@
               </li>
             </ul>
           </li>
+                    <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Category Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('category.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('category.fetch') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Category List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -145,29 +168,6 @@
                 <a href="{{ route('product.fetch') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Product List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
-              <p>
-                Category Management
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('category.add') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Category</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('category.fetch') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Category List</p>
                 </a>
               </li>
             </ul>
@@ -267,7 +267,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tag"></i>
+              <i class="nav-icon fa fa-certificate"></i>
               <p>
                 CMS Management
                 <i class="fas fa-angle-left right"></i>
@@ -291,7 +291,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('view.order') }}" class="nav-link">
-              <i class="fas fa-comments"></i>
+              <i class="fa fa-eye-slash"></i>
               <p>
                   View Orders
               </p>
@@ -299,7 +299,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('/view-frontend-user') }}" class="nav-link">
-              <i class="fas fa-comments"></i>
+              <i class="fa fa-eye"></i>
               <p>
                  View Registered User
               </p>
@@ -315,7 +315,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('/admin/reports') }}" class="nav-link">
-              <i class="fas fa-comments"></i>
+              <i class="fa fa-recycle"></i>
               <p>
                  Report
               </p>
@@ -393,5 +393,23 @@
     });
   } );
   </script>
+        <script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
 </body>
 </html>

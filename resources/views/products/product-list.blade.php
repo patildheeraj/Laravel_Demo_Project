@@ -62,7 +62,10 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
+                            <div class="d-flex justify-content-center mt-3" align="center">
+                                {!! $products->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

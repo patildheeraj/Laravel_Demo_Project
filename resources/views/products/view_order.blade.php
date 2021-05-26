@@ -17,15 +17,14 @@
                 <div class="col-md-12">
                     <div class="card shadow p-3 mb-5 bg-white rounded">
                       <div class="card-header text-center">
-                        <strong>Customer Orders Detail</strong> 
+                        <strong>Customer Orders Detail</strong>
                       </div>
                         <div class="card-body">
-                          <table class="table table-bordered data-table" style="width: 100%;">
+                          <table id="example2" class="table table-bordered data-table"  style="width: 100%;">
                               <thead>
                                   <th>Order ID</th>
                                   <th>Order Date</th>
                                   <th>Customer Name</th>
-                                  {{-- <th>Customer Email</th> --}}
                                   <th>Ordered Products</th>
                                   <th>Order Amount</th>
                                   <th>Order Status</th>
@@ -38,7 +37,6 @@
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->name }}</td>
-                                    {{-- <td>{{ $order->user_email }}</td> --}}
                                     <td>
                                          @foreach ($order->orders as $product)
                                             Product Code: <a data-toggle="modal" data-target="#model{{ $product->product_code }}" style="cursor: pointer; color:blueviolet;">
@@ -54,9 +52,13 @@
                                     </td>
                                   </tr>
                                 @endforeach
+
                               </tbody>
-                          
+
                           </table>
+                          <div class="d-flex justify-content-center mt-3" align="center">
+                                        {!! $orders->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('front_end.layout')
-@section('content')	
+@section('content')
     <section id="slider"><!--slider-->
 		<div class="container">
 			@if (Session::get('success'))
@@ -39,7 +39,7 @@
 								</div>
 							@endforeach
 						</div>
-						
+
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
 							<i class="fa fa-angle-left"></i>
 						</a>
@@ -47,19 +47,19 @@
 							<i class="fa fa-angle-right"></i>
 						</a>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
 	</section><!--/slider-->
-	
+
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
 					@include('front_end.front_sidebar')
 				</div>
-				
+
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Features Items</h2>
@@ -80,7 +80,7 @@
 												@else
 													<button class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 												@endif
-												
+
 											</form>
 										</div>
 										{{-- <div class="product-overlay">
@@ -100,9 +100,10 @@
 								</div>
 							</div>
 						@endforeach
-						
 					</div><!--features_items-->
-					
+                    <div class="d-flex justify-content-center" align="center">
+                            {!! $products->links() !!}
+                    </div>
 				</div>
 			</div>
 		</div>
