@@ -47,8 +47,9 @@
                                     <td>{{ $order->grand_total }} Rs.</td>
                                     <td>{{ $order->order_status }}</td>
                                     <td>{{ $order->payment_method }}</td>
-                                    <td>
-                                      <a href="{{ url('/admin/view-order/'.$order->id) }}" target="_blank" class="btn-sm btn-info">View</a>
+                                    <td align="center">
+                                      <a href="{{ url('/admin/view-order/'.$order->id) }}" target="_blank" class="btn-sm btn-info">View</a><br><br>
+                                      {{-- <a href="{{ url('/admin/order-invoice/'.$order->id) }}" target="_blank" class="btn-sm btn-success">Invoice</a> --}}
                                     </td>
                                   </tr>
                                 @endforeach

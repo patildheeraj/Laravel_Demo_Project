@@ -8,6 +8,7 @@ use App\Models\FrontUser;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -138,6 +139,31 @@ class ProductController extends Controller
     public function orderStatusUpdate(Request $request)
     {
         Order::where(['id' => $request->order_id])->update(['order_status' => $request->order_status]);
+        $data = Order::where(['id' => $request->order_id])->first();
+        // echo '<pre>';
+        // print_r(json_decode((json_encode($data))));
+        // die();
+        $email = $data->user_email;
+        $messageData = [
+            'email' => $email,
+            'name' => $data->name,
+            'order_id' => $request->order_id,
+            'order_status' => $data->order_status,
+        ];
+        Mail::send('emails.order_status', $messageData, function ($message) use ($email) {
+            $message->to($email)->subject('Order Status Update- E-shopper Website');
+        });
         return back()->with('success', 'Order status update successfully!!');
+    }
+
+    public function orderInvoice($id)
+    {
+        $order = Order::with('orders')->where('id', $id)->first();
+        $user_id = $order->user_id;
+        $shippingDetail = DelivaryAddress::where('user_id', $user_id)->first();
+        // echo '<pre>';
+        // print_r(json_decode((json_encode($order))));
+        // die();
+        return view('products.order_invoice', compact('order', 'shippingDetail'));
     }
 }

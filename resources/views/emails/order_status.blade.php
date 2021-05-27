@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register Email</title>
 </head>
 <body>
     <table>
@@ -15,8 +14,13 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Your account has been created successfully on E-shopper website.<br><br>Your acoount information is below:</td>
+            <td>Your order status has been updated successfully on E-shopper website.<br><br>Plese check your status on website in my order section.</td>
         </tr>
+         <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><strong>Order Id:</strong> #{{ $order_id }}</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -28,7 +32,7 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td><strong>Password:</strong> ******** (As chosen by you)</td>
+            <td><strong>Order Status:</strong>{{ $order_status }}</td>
         </tr>
         <tr>
             <td>&nbsp;</td>

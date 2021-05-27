@@ -4,37 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register Email</title>
 </head>
 <body>
     <table>
         <tr>
-            <td>Dear {{ $name }} !</td>
+            <td>Dear {{ $data->name }} !</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Your account has been created successfully on E-shopper website.<br><br>Your acoount information is below:</td>
-        </tr>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td><strong>Email:</strong> {{ $email }}</td>
+            <td>We have receive your feedback.<br><br>Plese check below, I have reply to your message might be you get answer.</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td><strong>Password:</strong> ******** (As chosen by you)</td>
+            <td><strong>Your subject:</strong> {{ $data->subject }}</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td><strong>Thanks & Regards</strong><br>E-shopper website</td>
+            <td><strong>Your message:</strong> {{ $data->message }}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><strong>Reply to your feedback:</strong> {{ $data->reply }}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><strong>Thanks & Regards</strong><br>E-shopper Team</td>
         </tr>
     </table>
 </body>

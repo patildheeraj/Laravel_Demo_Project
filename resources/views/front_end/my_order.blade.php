@@ -250,8 +250,8 @@
                         <td>{{ $order->shipping_charges }} Rs.</td>
                         <td>{{ $order->grand_total }} Rs.</td>
                         <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal{{$order->id}}">
-                  Track Order
-                </button></td>
+                        Track Order
+
                     </tr>
                     @endforeach
                 </tbody>

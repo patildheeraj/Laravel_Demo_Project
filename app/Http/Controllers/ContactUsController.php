@@ -6,6 +6,7 @@ use App\Models\ContactUs;
 use App\Models\FrontUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class ContactUsController extends Controller
@@ -43,7 +44,30 @@ class ContactUsController extends Controller
         $contact->mobile = $request->mobile;
         $contact->subject = $request->subject;
         $contact->message = $request->message;
+        $contact->reply = '';
         $contact->save();
-        return back()->with('success', 'Thank you for your feedback!!');
+        return back()->with('success', 'Thank you for your feedback. I will respond you soon!!');
+    }
+
+    public function reply(Request $request)
+    {
+        $request->validate([
+            'reply' => 'required',
+        ]);
+        DB::table('contact_us')->where(['id' => $request->id])->update(['reply' => $request->reply]);
+        $data = json_decode(json_encode(ContactUs::where(['id' => $request->id])->first()));
+
+        $email = $data->email;
+        $messageData = [
+            'data' => $data,
+        ];
+        // echo '<pre>';
+        // print_r($messageData);
+        // die();
+        Mail::send('emails.feedback_reply', $messageData, function ($mail) use ($email) {
+            $mail->to($email)->subject('Reply to your feedback- E-shopper Website');
+        });
+
+        return back()->with('success', 'Reply send to user Email!!');
     }
 }

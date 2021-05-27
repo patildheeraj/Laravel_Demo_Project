@@ -81,22 +81,23 @@ class FrontController extends Controller
         $newUser = new FrontUser();
         $newUser->name = $name;
         $newUser->email = $email;
+        $newUser->status = 1;
         $newUser->password = $password;
         $newUser->save();
 
         //Send Register Email
-        // $messageData = ['email' => $email, 'name' => $name];
-        // Mail::send('emails.register_email', $messageData, function ($message) use ($email) {
-        //     $message->to($email)->subject('Welcome to E-Shopper - Registration Successful');
-        // });
-
-        //Confirm Email
-        $messageData = ['email' => $email, 'name' => $name, 'code' => base64_encode($email)];
-        Mail::send('emails.confirmation_mail', $messageData, function ($message) use ($email) {
-            $message->to($email)->subject('Welcome to E-Shopper - Confirmation email for your account');
+        $messageData = ['email' => $email, 'name' => $name];
+        Mail::send('emails.register_email', $messageData, function ($message) use ($email) {
+            $message->to($email)->subject('Welcome to E-Shopper - Registration Successful');
         });
 
-        $request->session()->flash('success', 'New user added successfully check your email for confirm your account!!');
+        //Confirm Email
+        // $messageData = ['email' => $email, 'name' => $name, 'code' => base64_encode($email)];
+        // Mail::send('emails.confirmation_mail', $messageData, function ($message) use ($email) {
+        //     $message->to($email)->subject('Welcome to E-Shopper - Confirmation email for your account');
+        // });
+
+        $request->session()->flash('success', 'New user added successfully check your email for your account info!!');
         return redirect('/login');
     }
 
@@ -312,7 +313,7 @@ class FrontController extends Controller
         } else {
             $model = new DelivaryAddress();
             $model->user_id = $session_id;
-            $model->user_email = $session_email;
+            $model->user_email = $data['shipping_email'];
             $model->name = $data['shipping_name'];
             $model->address = $data['shipping_address'];
             $model->city = $data['shipping_city'];

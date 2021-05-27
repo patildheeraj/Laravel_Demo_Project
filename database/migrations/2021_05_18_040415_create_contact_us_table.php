@@ -20,6 +20,7 @@ class CreateContactUsTable extends Migration
             $table->string('mobile');
             $table->string('subject');
             $table->string('message');
+            $table->string('reply');
             $table->timestamps();
         });
     }

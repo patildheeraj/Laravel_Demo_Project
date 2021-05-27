@@ -97,6 +97,7 @@ Route::group(['middleware' => 'AuthCheck'], function () {
     //User Feedback
     Route::get('/admin/user-feedback', [ContactUsController::class, 'userFeedback'])->name('user.feedback');
     Route::get('/admin/delete-feedback/{id}', [ContactUsController::class, 'deleteFeedback']);
+    Route::post('/admin/reply', [ContactUsController::class, 'reply'])->name('feedback.reply');
 
     //View frontend register user list route
     Route::get('/view-frontend-user', [UserController::class, 'frontendUser']);
@@ -107,6 +108,8 @@ Route::group(['middleware' => 'AuthCheck'], function () {
     Route::get('/admin/view-order/{id}', [ProductController::class, 'orderDetail'])->name('order.detail');
     //order status update
     Route::post('/admin/order-status-update', [ProductController::class, 'orderStatusUpdate'])->name('order.status');
+    //Invoice Route
+    Route::get('/admin/order-invoice/{id}', [ProductController::class, 'orderInvoice'])->name('order.invoice');
 });
 
 Route::get('/adminlogin', [MainContraoller::class, 'login'])->name('auth.login');
@@ -185,6 +188,7 @@ Route::get('/404', function () {
     return view('front_end.404');
 });
 Route::get('/contact', [ContactUsController::class, 'contactForm']);
+
 
 Route::post('/submit-contactForm', [ContactUsController::class, 'submitContactForm'])->name('contact.form');
 

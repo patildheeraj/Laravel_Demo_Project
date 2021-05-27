@@ -12,7 +12,7 @@
 				<div class="col-sm-3">
 					@include('front_end.front_sidebar')
 				</div>
-				
+
 				<div class="col-sm-9 padding-right">
 					 @if (Session::get('success'))
 		<div class="alert alert-success alert-dismissible">
@@ -43,7 +43,7 @@
 									<p>Product Code: {{ $product->product_code }}</p>
 									<img src="{{ asset('frontend/images/product-details/rating.png') }}" alt="" />
 									<span>
-										<span>{{ $product->pprice }}</span>
+										<span>{{ $product->pprice }} Rs.</span>
 										<label>Quantity:</label>
 										<input type="text" value="1" name="quantity"/>
 										@if ($product->pstock >0)
@@ -69,7 +69,7 @@
 							</form>
 						</div>
 					</div><!--/product-details-->
-					
+
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
@@ -84,13 +84,13 @@
                                         <p>{{ $product->description }}</p>
                                     </div>
 							</div>
-							
+
 							<div class="tab-pane fade" id="care" >
                                     <div class="col-sm-12">
                                         <p>{{ $product->care }}</p>
                                     </div>
 							</div>
-							
+
 							<div class="tab-pane fade" id="delivary" >
                                     <div class="col-sm-12">
                                         <p>100% Original Product <br> Cash On Delivary is available.</p>
@@ -98,11 +98,11 @@
 							</div>
                         </div>
 					</div>
-							
+
 
 				</div><!--/category-tab-->
-					
-					
+
+
 			</div>
 		</div>
 	</div>
