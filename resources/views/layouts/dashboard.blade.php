@@ -1,5 +1,6 @@
 
 @extends('layouts.master')
+@section('dashboard','active')
 @section('content')
   <!-- Content Wrapper. Contains page content -->
 
@@ -21,7 +22,7 @@
         </div><!-- /.container-fluid --> --}}
       </div>
       <!-- /.content-header -->
-  
+
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
@@ -36,4 +37,3 @@
       <!-- /.content -->
   </div>
 @endsection
-  

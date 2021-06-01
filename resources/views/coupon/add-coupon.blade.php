@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('coupon_menu','menu-open')
+@section('coupon', 'active')
+@section('coupon_add', 'active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
@@ -6,6 +9,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Coupon Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Coupon Management</a></li>
+                    <li class="breadcrumb-item active">Add Coupon</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -42,8 +52,8 @@
                                             <label for="coupon_type">Coupon Type</label>
                                             <select name='coupon_type' class="custom-select rounded-0 @error('coupon_type') is-invalid @enderror" >
                                                 <option value="">Select Coupon Type</option>
-                                                <option value="Fixed">Fixed Value</option> 
-                                                <option value="Percentage">Percentage</option>                     
+                                                <option value="Fixed">Fixed Value</option>
+                                                <option value="Percentage">Percentage</option>
                                             </select>
                                             @error('coupon_type')
                                                 <div class="invalid-feeedback text-danger font-weight-light">
@@ -76,7 +86,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="date">Expiry Date</label>

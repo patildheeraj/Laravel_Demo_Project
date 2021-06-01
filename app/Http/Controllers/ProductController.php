@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     public function getProduct()
     {
-        $products = Category::join('products', 'products.pcategory', '=', 'categories.cid')->orderby('pid', 'DESC')->paginate(5);
+        $products = Category::join('products', 'products.pcategory', '=', 'categories.cid')->orderby('pid', 'DESC')->paginate(10);
         return view('products.product-list', compact('products'));
     }
 
@@ -87,8 +87,14 @@ class ProductController extends Controller
         $care = $request->care;
 
         $image = $request->file('file');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('product_images'), $imageName);
+        if ($image != null) {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('product_images'), $imageName);
+        } else {
+            $product1 = Product::find($request->pid);
+            $imageName = $product1->pimage;
+        }
+
 
         $product = Product::find($request->pid);
         $product->pname = $pname;

@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('configuration','active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
@@ -6,6 +7,12 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Configuration Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Configuration Management</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -32,14 +39,14 @@
                                     {{-- <input type="hidden" name="id" value="{{ $data->id }}"> --}}
                                     <input type="text" name="admin_email" class="form-control mb-2" id="admin_email" value="{{ $data[0] }}">
                                     @error('admin_email')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0">
                                     <label for="notification_email">Notification Email</label>
                                     <input type="text" name="notification_email" class="form-control mb-2" id="notification_email" value="{{ $data[1] }}">
                                     @error('notification_email')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>

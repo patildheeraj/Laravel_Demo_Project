@@ -33,12 +33,12 @@ class SocialController extends Controller
                 Auth::login($user);
                 return redirect('/');
             } else {
-                $user = new User();
+                $user = new FrontUser();
                 $user->name = $data->name;
                 $user->email = $data->email;
-                $user->github_id = $data->id;
-                $user->avatar = $data->avatar;
-                $user->password = Hash::make('123');
+                $user->google_id = $data->id;
+                // $user->avatar = $data->avatar;
+                // $user->password = Hash::make('123');
                 $user->save();
                 Auth::login($user);
                 return redirect('/');
@@ -65,12 +65,12 @@ class SocialController extends Controller
             Auth::login($user);
             return redirect('/');
         } else {
-            $user = new User();
+            $user = new FrontUser();
             $user->name = $data->name;
             $user->email = $data->email;
-            $user->github_id = $data->id;
-            $user->avatar = $data->avatar;
-            $user->password = Hash::make('123');
+            $user->facebook_id = $data->id;
+            //$user->avatar = $data->avatar;
+            //$user->password = Hash::make('123');
             $user->save();
             Auth::login($user);
             return redirect('/');
@@ -90,20 +90,17 @@ class SocialController extends Controller
         //$this->_registerOrLoginUser($user);
         $user = FrontUser::where('email', '=', $data->email)->first();
 
-        // echo '<pre>';
-        // print_r($user);
-        // die();
-        // if (!$user) {
-        //     $user = new User();
-        //     $user->name = $data->name;
-        //     $user->email = $data->email;
-        //     $user->github_id = $data->id;
-        //     $user->avatar = $data->avatar;
-        //     $user->password = Hash::make('123');
-        //     $user->save();
-        // }
+        if (!$user) {
+            $user = new FrontUser();
+            $user->name = $data->name;
+            $user->email = $data->email;
+            $user->github_id = $data->id;
+            // $user->avatar = $data->avatar;
+            // $user->password = Hash::make('123');
+            $user->save();
+        }
 
-        // Auth::login($user);
-        // return redirect()->route('home');
+        Auth::login($user);
+        return redirect()->route('/');
     }
 }

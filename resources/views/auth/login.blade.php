@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Admin E-Shopper | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +19,7 @@
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-          <a href="#" class="h1"><b>Admin</b>LTE</a>
+          <a href="#" class="h1"><b>Admin</b> E-Shopper</a>
         </div>
   <!-- /.login-logo -->
         <div class="card">
@@ -71,9 +71,9 @@
                 </div>
                 </div>
             </form>
-            <p class="mb-0">
+            {{-- <p class="mb-0">
                 <a href="{{ url('/adminregister') }}" class="text-center">Register a new membership</a>
-            </p>
+            </p> --}}
             </div>
             <!-- /.login-card-body -->
         </div>

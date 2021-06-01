@@ -48,17 +48,14 @@
         <a href="/admin" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link">Front-End</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ url('/admin-logout') }}" class="nav-link">Logout</a>
+        <a href="/" class="nav-link" target="_blank">Front-End</a>
       </li>
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
@@ -77,11 +74,14 @@
             </div>
           </form>
         </div>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('/admin-logout') }}" class="nav-link">Logout</a>
       </li>
     </ul>
   </nav>
@@ -90,7 +90,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ url('/admin') }}" class="brand-link">
       <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -112,8 +112,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item ">
+            <a href="#" class="nav-link @yield('dashboard')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -122,15 +122,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin" class="nav-link active">
+                <a href="/admin" class="nav-link  @yield('dashboard')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
             </ul>
           </li>
-                    <li class="nav-item">
-            <a href="#" class="nav-link">
+        <li class="nav-item @yield('menu')">
+            <a href="#" class="nav-link @yield('category')">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Category Management
@@ -139,21 +139,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('category.add') }}" class="nav-link">
+                <a href="{{ route('category.add') }}" class="nav-link @yield('category_add')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('category.fetch') }}" class="nav-link">
+                <a href="{{ route('category.fetch') }}" class="nav-link @yield('category_list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Category List</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item @yield('product_menu')">
+            <a href="#" class="nav-link @yield('product')">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Products Management
@@ -162,20 +162,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('product.add') }}" class="nav-link">
+                <a href="{{ route('product.add') }}" class="nav-link @yield('product_add')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('product.fetch') }}" class="nav-link">
+                <a href="{{ route('product.fetch') }}" class="nav-link @yield('product_list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Product List</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @yield('user_menu')">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -199,7 +199,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ route('configuration.edit') }}" class="nav-link">
+            <a href="{{ route('configuration.edit') }}" class="nav-link @yield('configuration')">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
                  Configuration
@@ -220,8 +220,8 @@
               </li>
             </ul> --}}
           </li>
-                    <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item @yield('banner_menu')">
+            <a href="#" class="nav-link @yield('banner')">
               <i class="nav-icon fas fa-th"></i>
               <p>
                  Banner
@@ -230,13 +230,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('Banner.add') }}" class="nav-link">
+                <a href="{{ route('Banner.add') }}" class="nav-link @yield('banner_add')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Banner</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('Banner.fetch') }}" class="nav-link">
+                <a href="{{ route('Banner.fetch') }}" class="nav-link @yield('banner_list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Banner List</p>
                 </a>
@@ -244,8 +244,8 @@
             </ul>
           </li>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item @yield('coupon_menu')">
+            <a href="#" class="nav-link @yield('coupon')">
               <i class="nav-icon fas fa-tag"></i>
               <p>
                  Coupon
@@ -254,22 +254,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('coupon.add') }}" class="nav-link">
+                <a href="{{ route('coupon.add') }}" class="nav-link @yield('coupon_add')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Coupon</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{ route('coupon.fetch') }}" class="nav-link">
+                <a href="{{ route('coupon.fetch') }}" class="nav-link @yield('coupon_list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Coupon List</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item @yield('cms_menu')">
+            <a href="#" class="nav-link @yield('cms')">
               <i class="nav-icon fa fa-certificate"></i>
               <p>
                 CMS Management
@@ -278,14 +278,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/admin/add-cms-page') }}" class="nav-link">
+                <a href="{{ url('/admin/add-cms-page') }}" class="nav-link @yield('cms_add')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add CMS</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{ url('/admin/list-cms-page') }}" class="nav-link">
+                <a href="{{ url('/admin/list-cms-page') }}" class="nav-link @yield('cms_list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View CMS</p>
                 </a>
@@ -293,7 +293,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ route('view.order') }}" class="nav-link">
+            <a href="{{ route('view.order') }}" class="nav-link @yield('viewOrder')">
               <i class="fa fa-eye-slash"></i>
               <p>
                   View Orders
@@ -301,7 +301,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/view-frontend-user') }}" class="nav-link">
+            <a href="{{ url('/view-frontend-user') }}" class="nav-link @yield('viewRegister')">
               <i class="fa fa-eye"></i>
               <p>
                  View Registered User
@@ -309,7 +309,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('user.feedback') }}" class="nav-link">
+            <a href="{{ route('user.feedback') }}" class="nav-link @yield('userFeedback')">
               <i class="fas fa-comments"></i>
               <p>
                  User Feedback
@@ -317,7 +317,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admin/reports') }}" class="nav-link">
+            <a href="{{ url('/admin/reports') }}" class="nav-link @yield('report')">
               <i class="fa fa-recycle"></i>
               <p>
                  Report

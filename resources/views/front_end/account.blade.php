@@ -3,7 +3,7 @@
         margin-bottom: 20px;
     }
 	#btn1{
-		margin-bottom: 10px; 
+		margin-bottom: 10px;
 	}
 </style>
 @extends('front_end.layout')
@@ -71,21 +71,27 @@
 							{{ Session::get('pwd') }}
 						</div>
 					@endif
+                    @if (Session::get('pwd_fail'))
+						<div class="alert alert-danger alert-dismissible">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							{{ Session::get('pwd_fail') }}
+						</div>
+					@endif
 					<div class="signup-form"><!--sign up form-->
 						<h2>Update Password</h2>
 						<form action="{{ route('update.password') }}" method="POST">
 							@csrf
 							<input type="password" name="current_password" placeholder="Current password"/>
 							@error('current_password')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
 							<input type="password" name="new_password" placeholder="New Password"/>
 							@error('new_password')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
 							<input type="password" name="conpassword" placeholder="Confirm Password"/>
 							@error('conpassword')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
 							<button type="submit" class="btn btn-default" id="btn1">Update</button>
 							Don't remember password.<a href="{{ url('/forgot-password') }}" class="mt-3"><Strong>Forgot Password?</Strong></a>

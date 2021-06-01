@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('cms_menu','menu-open')
+@section('cms', 'active')
+@section('cms_add', 'active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
@@ -6,6 +9,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">CMS Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">CMS Management</a></li>
+                    <li class="breadcrumb-item active">Add CMS</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -31,21 +41,21 @@
                                     <label for="title">Title</label>
                                     <input type="text" name="title" class="form-control mb-2" id="title" placeholder="CMS Page Title">
                                     @error('title')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" name="description" placeholder="CMS Page Description"></textarea>
                                     @error('description')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0">
                                     <label for="url">URL</label>
                                     <input type="text" name="url" class="form-control mb-2" id="url" placeholder="CMS Page URL">
                                     @error('url')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-check">

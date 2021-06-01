@@ -73,4 +73,10 @@ class MainContraoller extends Controller
             }
         }
     }
+
+    public  function viewAdmin()
+    {
+        $admins = Admin::all();
+        return view('users.view_admin', compact('admins'));
+    }
 }

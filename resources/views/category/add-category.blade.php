@@ -1,11 +1,21 @@
 @extends('layouts.master')
+@section('category','active')
+@section('menu','menu-open')
+@section('category_add','active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Category</h1>
+              <h1 class="m-0">Category Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Category Management</a></li>
+                    <li class="breadcrumb-item active">Add Category</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -13,7 +23,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Add New Category</h3>
@@ -31,7 +41,7 @@
                                     <label for="cname">Category Name</label>
                                     <input type="text" name="cname" class="form-control mb-2" id="cname" placeholder="Enter Category Name">
                                     @error('cname')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0">
@@ -43,14 +53,14 @@
                                         @endforeach
                                     </select>
                                     @error('parent_category_id')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0">
                                     <label for="cname">Slug Name</label>
                                     <input type="text" name="slug" class="form-control mb-2" id="slug" placeholder="Enter Category Slug">
                                     @error('slug')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -63,7 +73,7 @@
                                         </div>
                                     </div>
                                     @error('file')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>

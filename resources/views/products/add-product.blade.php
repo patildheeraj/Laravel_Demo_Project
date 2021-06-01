@@ -1,11 +1,21 @@
 @extends('layouts.master')
+@section('product_menu','menu-open')
+@section('product', 'active')
+@section('product_add', 'active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Product</h1>
+              <h1 class="m-0">Product Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Product Management</a></li>
+                    <li class="breadcrumb-item active">Add Product</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -35,7 +45,7 @@
                                 <label for="pname">Product Name</label>
                                 <input type="text" name="pname" class="form-control" value="{{ old('pname') }}" placeholder="Enter Product Name">
                                 @error('pname')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="row">
@@ -44,7 +54,7 @@
                                         <label for="pprice">Product Price</label>
                                         <input type="text" name="pprice" class="form-control" value="{{ old('pprice') }}" placeholder="Enter Product Price">
                                         @error('pprice')
-                                            <span class="text-danger font-weight-light">{{$message}}</span>        
+                                            <span class="text-danger font-weight-light">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -53,7 +63,7 @@
                                         <label for="pstock">Product Stock</label>
                                         <input type="number" name="pstock" class="form-control" value="{{ old('pstock') }}" placeholder="Enter Product stock">
                                         @error('pstock')
-                                            <span class="text-danger font-weight-light">{{$message}}</span>        
+                                            <span class="text-danger font-weight-light">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -62,14 +72,14 @@
                                 <label for="file">Product Description</label>
                                 <textarea name="description" class="form-control" placeholder="Enter Product Description">{{ old('description') }}</textarea>
                                 @error('description')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                              <div class="form-group">
                                 <label for="file">Material & Care</label>
                                 <textarea name="care" class="form-control" placeholder="Enter Product Material & care">{{ old('care') }}</textarea>
                                 @error('care')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -84,7 +94,7 @@
                                     </div>
                                 </div>
                                 @error('file')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -92,15 +102,15 @@
                                 <select name='pcategory' class="custom-select rounded-0" value="{{ old('pcategory') }}">
                                   <option value="">Select Category</option>
                                   @foreach ($category as $item)
-                                    <option value="{{ $item->cid }}">{{ $item->cname }}</option> 
+                                    <option value="{{ $item->cid }}">{{ $item->cname }}</option>
 
                                     @foreach ($item->categories as $sub )
                                         <option value="{{ $sub->cid }}">&nbsp;--&nbsp;{{ $sub->cname }}</option>
                                     @endforeach
-                                  @endforeach                      
+                                  @endforeach
                                 </select>
                                 @error('pcategory')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>

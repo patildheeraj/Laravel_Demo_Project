@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('cms_menu','menu-open')
+@section('cms', 'active')
+@section('cms_list', 'active')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -6,7 +9,14 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">CMS Pages List</h1>
+              <h1 class="m-0">CMS Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">CMS Management</a></li>
+                    <li class="breadcrumb-item active">CMS List</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -46,7 +56,7 @@
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td>{{ $item->url }}</td>
-                                            <td>{{ $item->status }}</td>  
+                                            <td>{{ $item->status }}</td>
                                             <td>
                                                 <a href="/admin/edit-cms-page/{{$item->id}}" class="btn-sm btn-info ">Edit</a>
                                                 <a href="/admin/delete-cms-page/{{$item->id}}" class="btn-sm btn-danger ">Delete</a>
@@ -54,7 +64,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
                         </div>
                     </div>
                 </div>

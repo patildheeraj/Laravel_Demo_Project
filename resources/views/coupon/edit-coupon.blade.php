@@ -1,4 +1,6 @@
 @extends('layouts.master')
+@section('coupon_menu','menu-open')
+@section('coupon', 'active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
@@ -6,6 +8,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Coupon Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Coupon Management</a></li>
+                    <li class="breadcrumb-item active">Edit Coupon</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -41,8 +50,8 @@
                                     <label for="coupon_type">Coupon Type</label>
                                     <select name='coupon_type' class="custom-select rounded-0 @error('coupon_type') is-invalid @enderror" value="{{ $data->coupon_type }}">
                                         <option value="">Select Coupon Type</option>
-                                        <option value="Fixed" {{ $data->coupon_type == 'Fixed'? 'selected':'' }}>Fixed Value</option> 
-                                        <option value="Percentage" {{ $data->coupon_type == 'Percentage'? 'selected':'' }}>Percentage</option>                     
+                                        <option value="Fixed" {{ $data->coupon_type == 'Fixed'? 'selected':'' }}>Fixed Value</option>
+                                        <option value="Percentage" {{ $data->coupon_type == 'Percentage'? 'selected':'' }}>Percentage</option>
                                     </select>
                                     @error('coupon_type')
                                     <div class="invalid-feeedback text-danger font-weight-light">

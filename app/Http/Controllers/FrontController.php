@@ -202,7 +202,7 @@ class FrontController extends Controller
                 'name' => $name,
                 'password' => $password
             ];
-            Mail::send('front_end.forgot_email', $messageData, function ($message) use ($email) {
+            Mail::send('emails.forgot_email', $messageData, function ($message) use ($email) {
                 $message->to($email)->subject('New Password - E-shopper website');
             });
             $request->session()->flash('success', 'New password sent to your mail.');
@@ -262,8 +262,13 @@ class FrontController extends Controller
             'conpassword' => 'required|same:new_password',
         ]);
         $session_email = session()->get('FRONT_Email');
-        DB::table('front_users')->where('email', '=', $session_email)->update(['password' => $request->new_password]);
-        return back()->with('pwd', 'Password updated successfully!!');
+        $pass = DB::table('front_users')->where(['email' => $session_email])->first();
+        if ($pass->password == $request->current_password) {
+            DB::table('front_users')->where('email', '=', $session_email)->update(['password' => $request->new_password]);
+            return back()->with('pwd', 'Password updated successfully!!');
+        } else {
+            return back()->with('pwd_fail', 'Current Password does not match, try again!!');
+        }
     }
 
     public function productDetail($product_id)

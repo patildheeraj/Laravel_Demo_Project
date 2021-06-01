@@ -31,7 +31,7 @@
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					{{ Session::get('success') }}
 				</div>
-			@endif			
+			@endif
 			@if (Session::get('fail'))
 				<div class="alert alert-danger alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -59,8 +59,8 @@
 								<td><h3>Cart is empty</h3></td>
 							</tr>
 						@else
-							
-						@foreach ($cart as $item)						
+
+						@foreach ($cart as $item)
 							<tr>
 								<td class="cart_product">
 									<a href=""><img src="{{asset('product_images')}}/{{$item->product_image}}" alt="" width="150px" height="120px"></a>
@@ -77,9 +77,9 @@
 										@if ($item->quantity > 1)
 											<a class="cart_quantity_down" href="{{ url('update-quantity/'.$item->product_id.'/-1') }}"> - </a>
 										@else
-											<a class="cart_quantity_down" href="{{ url('update-quantity/'.$item->product_id.'/-1') }}" style="pointer-events: none"> - </a>
+											<a class="cart_quantity_down"  style="pointer-events: none"> - </a>
 										@endif
-										<input class="cart_quantity_input" type="text" name="quantity" value="{{ $item->quantity }}" autocomplete="off" size="2">
+										<input class="cart_quantity_input" type="text" name="quantity" value="{{ $item->quantity }}" autocomplete="off" readonly size="2">
 										<a class="cart_quantity_up" href="{{ url('update-quantity/'.$item->product_id.'/1') }}"> + </a>
 									</div>
 								</td>
@@ -93,9 +93,9 @@
 							@php
 								$total_amount = $total_amount + ($item->product_price * $item->quantity);
 							@endphp
-						@endforeach	
+						@endforeach
 						@endif
-											
+
 					</tbody>
 				</table>
 			</div>
@@ -121,7 +121,7 @@
 								</form>
 							</li>
 						</ul>
-						
+
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -166,8 +166,8 @@
 								@endif
 								<li>Grand Total <span>
 									@if ($total_amount >1000 && $total_amount>0)
-									{{ $total_amount }}
-									@elseif ($total_amount == 0) Rs.
+									{{ $total_amount }} Rs.
+									@elseif ($total_amount == 0)
 									0 Rs.
 									@else
 									{{ $total_amount + 200 }} Rs.
@@ -181,7 +181,7 @@
 							@else
 								<a class="btn btn-default check_out" href=""  id="checkout">Check Out</a>
 							@endif
-							
+
 					</div>
 				</div>
 			</div>

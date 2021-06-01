@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function getCategory()
     {
-        $category = Category::paginate(5);
+        $category = Category::paginate(10);
         $num = 1;
         return view('category.category-list', compact('category', 'num'));
     }
@@ -51,7 +51,7 @@ class CategoryController extends Controller
         $name = $request->cname;
         $slug = $request->slug;
         $parent_category_id = $request->parent_category_id;
-
+        $imageName = '';
         if ($request->hasFile('file')) {
             $image = $request->file('file');
             $imageName = time() . '.' . $image->extension();
@@ -64,7 +64,6 @@ class CategoryController extends Controller
         $category->slug = $slug;
         $category->parent_category_id = $parent_category_id;
         $category->category_image = $imageName;
-        //$category->slug = $slug;
         $category->save();
         return redirect('/admin/category-list')->with('category_added', 'Category added successfully!!');
     }
@@ -79,7 +78,8 @@ class CategoryController extends Controller
     public function editCategory($id)
     {
         $category = Category::find($id);
-        $parent_category = Category::where('cid', '!=', $id)->get();
+        //$parent_category = Category::where('cid', '!=', $id)->get();
+        $parent_category = Category::with('categories')->where(['parent_category_id' => 0])->get();
         //$result['category'] = DB::table('categories')->where('cid', '=', $id)->get();
         //$result['parent_category'] = DB::table('categories')->select('parent_category_id')->where('cid', '!=', $id)->get();
         //echo '<pre>';
@@ -95,10 +95,19 @@ class CategoryController extends Controller
         $cname = $request->cname;
         $slug = $request->slug;
         $parent_category_id = $request->parent_category_id;
-
+        $imageName = '';
         $image = $request->file('file');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('category_images'), $imageName);
+        if ($image == null) {
+            $category = Category::find($request->cid);
+            $imageName = $category->category_image;
+        } else {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('category_images'), $imageName);
+        }
+        // echo '<pre>';
+        // print_r(json_decode(json_encode($imageName)));
+        // die();
+
         #$id = $request->cid;
         $category = Category::find($request->cid);
         $category->cname = $cname;

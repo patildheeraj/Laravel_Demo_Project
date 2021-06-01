@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('banner_menu','menu-open')
+@section('banner', 'active')
+@section('banner_list', 'active')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -6,7 +9,14 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Banner</h1>
+              <h1 class="m-0">Banner Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Banner Management</a></li>
+                    <li class="breadcrumb-item active">Banner List</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -48,7 +58,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
                         </div>
                     </div>
                 </div>

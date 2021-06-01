@@ -40,6 +40,10 @@ class BannerController extends Controller
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('banner_images'), $imageName);
 
+        if ($imageName == null) {
+            $imageName = '';
+        }
+
         $model = new Banner();
         $model->title = $title;
         $model->sub_title = $sub_title;
@@ -63,8 +67,14 @@ class BannerController extends Controller
         $link = $request->link;
 
         $image = $request->file('file');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('banner_images'), $imageName);
+        if ($image != null) {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('banner_images'), $imageName);
+        } else {
+            $model = Banner::find($request->bid);
+            $imageName = $model->bimage;
+        }
+
 
         $model = Banner::find($request->bid);
         $model->title = $title;

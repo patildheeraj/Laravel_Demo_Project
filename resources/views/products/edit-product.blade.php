@@ -1,11 +1,20 @@
 @extends('layouts.master')
+@section('product_menu','menu-open')
+@section('product', 'active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Product</h1>
+              <h1 class="m-0">Product Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Product Management</a></li>
+                    <li class="breadcrumb-item active">Edit Product</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -40,7 +49,7 @@
                                     <input type="hidden" name="pid" value="{{ $products->pid }}">
                                     <input type="text" name="pname" class="form-control" value="{{ $products->pname }}">
                                     @error('pname')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                <div class="row">
@@ -49,7 +58,7 @@
                                             <label for="pprice">Product Price</label>
                                             <input type="text" name="pprice" class="form-control" value="{{ $products->pprice }}">
                                             @error('pprice')
-                                                <span class="text-danger font-weight-light">{{$message}}</span>        
+                                                <span class="text-danger font-weight-light">{{$message}}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -58,7 +67,7 @@
                                             <label for="pstock">Product Stock</label>
                                             <input type="number" name="pstock" class="form-control" value="{{ $products->pstock }}" placeholder="Enter Product stock">
                                             @error('pstock')
-                                                <span class="text-danger font-weight-light">{{$message}}</span>        
+                                                <span class="text-danger font-weight-light">{{$message}}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -67,31 +76,31 @@
                                 <label for="file">Product Description</label>
                                 <textarea name="description" class="form-control" placeholder="Enter Product Description">{{ $products->description }}</textarea>
                                 @error('description')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                              <div class="form-group">
                                 <label for="file">Material & Care</label>
                                 <textarea name="care" class="form-control" placeholder="Enter Product Material & care">{{ $products->care }}</textarea>
                                 @error('care')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                                 <div class="form-group">
                                     <label for="file">Product Image</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="form-control" name="file" value="{{asset('product_images')}}/{{$products->pimage}}">                                       
+                                            <input type="file" class="form-control" name="file" value="{{asset('product_images')}}/{{$products->pimage}}">
                                         </div>
                                         <div class="input-group-append">
                                             <span class="input-group-text">Upload</span>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                     @if($products->pimage)
                                         <img id="original" src="{{asset('product_images')}}/{{$products->pimage}}" height="100" width="120">
                                     @endif
                                     @error('file')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -105,7 +114,7 @@
                                         @endforeach
                                 </select>
                                     @error('pcategory')
-                                        <span class="text-danger font-weight-light">{{$message}}</span>        
+                                        <span class="text-danger font-weight-light">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>

@@ -1,11 +1,20 @@
 @extends('layouts.master')
+@section('banner_menu','menu-open')
+@section('banner', 'active')
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Banner</h1>
+              <h1 class="m-0">Banner Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Banner Management</a></li>
+                    <li class="breadcrumb-item active">Edit Banner</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -36,21 +45,21 @@
                                 <input type="hidden" name="bid" value="{{ $data->bid }}">
                                 <input type="text" name="title" class="form-control" value="{{ $data->title }}">
                                 @error('title')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="sub_title">Banner Subtitle</label>
                                 <input type="text" name="sub_title" class="form-control" value="{{ $data->sub_title }}">
                                 @error('sub_title')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="link">Banner Link</label>
                                 <input type="link" name="link" class="form-control" value="{{ $data->link }}">
                                 @error('link')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -68,7 +77,7 @@
                                         <img id="original" src="{{asset('banner_images')}}/{{$data->bimage}}" height="100" width="120">
                                     @endif
                                 @error('file')
-                                    <span class="text-danger font-weight-light">{{$message}}</span>        
+                                    <span class="text-danger font-weight-light">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>

@@ -55,8 +55,8 @@
                     <select name='role' class="custom-select rounded-0" id="exampleSelectRounded0">
                       <option value="">Select Role</option>
                       @foreach ($admins as $admin)
-                      <option value="{{ $admin->role_id }}">{{ $admin->role_name }}</option> 
-                      @endforeach                      
+                      <option value="{{ $admin->role_id }}">{{ $admin->role_name }}</option>
+                      @endforeach
                     </select>
                 </div>
                 <div class="input-group mb-2">
@@ -86,26 +86,40 @@
                     @enderror
                 </span>
                 <div class="input-group mb-2 mt-2">
-                <input type="password" name="conpass" class="form-control" placeholder="Retype password">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
+                    <input type="password" name="conpass" class="form-control" placeholder="Retype password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <span class="text-danger">
                     @error('conpass')
                         {{ $message }}
                     @enderror
                 </span>
-                <div class="row mb-2">
+                <div class="input-group mb-2">
+                    <label for="status" class="mr-2">Status</label>
 
-                <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="status">Active
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="status">Inactive
+                    </label>
+                    </div>
                 </div>
+
+                <div class="row mb-2">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </div>
                 </div>
             </form>
-            <a href="{{ url('adminlogin') }}" class="text-center">I already have a account, sign in</a>
+            {{-- <a href="{{ url('adminlogin') }}" class="text-center">I already have a account, sign in</a> --}}
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

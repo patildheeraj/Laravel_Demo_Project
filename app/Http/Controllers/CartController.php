@@ -107,13 +107,16 @@ class CartController extends Controller
     {
         Session::forget('CouponAmount');
         Session::forget('CouponCode');
+
         $cartDetail = DB::table('carts')->where('product_id', $product_id)->first();
         $product = DB::table('products')->where('product_code', $cartDetail->product_code)->first();
-        $updatedQuantity = ($cartDetail->quantity) + ($quantity);
-        // echo $updatedQuantity;
-        // die();
+        //$updatedQuantity = ($cartDetail->quantity) + ($quantity);
+        $updatedQuantity = $quantity;
+        //echo $updatedQuantity;
+        //die();
         if ($product->pstock >= $updatedQuantity) {
             DB::table('carts')->where('product_id', $product_id)->increment('quantity', $quantity);
+            DB::table('products')->where('pid', $product_id)->increment('pstock', (-$quantity));
             return back()->with('success', 'Item quantity has been increases successfully!!');
         } else {
             return back()->with('fail', 'sufficient stock is not available!!');
@@ -134,12 +137,17 @@ class CartController extends Controller
         }
         $expiry_date = $coupon->Exp_date;
         $current_date = date('d-m-Y');
-        if ($expiry_date < $current_date) {
+        // echo strtotime($expiry_date) . '<br>';
+        // echo strtotime($current_date);
+        // if ($expiry_date < $current_date) {
+        //     echo 'true';
+        // }
+        //die();
+        if (strtotime($expiry_date) < strtotime($current_date)) {
             return back()->with('fail', 'Coupon code is Expired!!');
         }
 
         $session_id = Session::get('session_id');
-        //$list = Cart::where('session_id', '=', $session_id)->get();
         $user_email = Session::get('FRONT_Email');
         if (empty(Session::get('FRONT_LOGIN'))) {
             $list = Cart::where('Session_id', '=', $session_id)->get();
@@ -178,6 +186,10 @@ class CartController extends Controller
 
     public function checkout()
     {
+        $login = Session::get('FRONT_LOGIN');
+        if (empty($login)) {
+            return redirect('login')->with("fail", 'You must be login first');
+        }
         $session_id = session()->get('session_id');
         $user_email = session()->get('FRONT_Email');
 

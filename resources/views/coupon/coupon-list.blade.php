@@ -1,5 +1,7 @@
-
 @extends('layouts.master')
+@section('coupon_menu','menu-open')
+@section('coupon', 'active')
+@section('coupon_list', 'active')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,7 +9,14 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Banner</h1>
+              <h1 class="m-0">Coupon Management</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Coupon Management</a></li>
+                    <li class="breadcrumb-item active">Coupon List</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -52,7 +61,7 @@
                                                 @endif
                                             <td>{{ $item->minimum_purchase }} Rs.</td>
                                             <td>{{ $item->Exp_date }}</td>
-                                            <td> 
+                                            <td>
                                                 @if ($item->status ==1)
                                                     <a href="{{ url('admin/coupon/status/0')}}/{{ $item->id }}" class="btn btn-sm btn-success">Active</a>
                                                 @elseif ($item->status ==0)
@@ -66,7 +75,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
                         </div>
                     </div>
                 </div>

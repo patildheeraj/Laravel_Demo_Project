@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('category','active')
+@section('menu','menu-open')
+@section('category_list','active')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,6 +10,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Category</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Category Management</a></li>
+                    <li class="breadcrumb-item active">Category List</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -34,7 +44,6 @@
                             @endif
                             <table id="example2" class="table table-bordered text-center">
                                 <thead>
-                                    <th>No.</th>
                                     <th>Category Name</th>
                                     <th>Parent Category</th>
                                     <th>Category Slug</th>
@@ -44,7 +53,6 @@
                                 <tbody>
                                     @foreach ($category as $item)
                                         <tr>
-                                            <td>{{ $num++ }}</td>
                                             <td>{{ $item->cname }}</td>
                                             <td>{{ $item->parent_category_id }}</td>
                                             <td>{{ $item->slug }}</td>

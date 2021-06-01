@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\FrontUser;
 use App\Models\NewUser;
 use App\Models\Role;
@@ -12,7 +13,11 @@ class UserController extends Controller
 {
     public function getUsers()
     {
-        $users = Role::join('new_users', 'new_users.role', '=', 'roles.role_id')->get();
+        $users = Role::join('admins', 'admins.role', '=', 'roles.role_id')->get();
+        //$users = Admin::all();
+        // echo '<pre>';
+        // print_r(json_decode(json_encode($users)));
+        // die();
         return view('users.user-list', compact('users'));
     }
 

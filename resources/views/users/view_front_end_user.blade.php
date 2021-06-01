@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('viewRegister', 'active')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,6 +8,12 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Registered User List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">View Register User</li>
+                </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -53,13 +60,13 @@
                                                     <span class="text-success">Active</span>
                                                 @else
                                                     <span class="text-danger">Inctive</span>
-                                                @endif    
+                                                @endif
                                             </td>
                                             <td>{{ $user->created_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
                         </div>
                     </div>
                 </div>
