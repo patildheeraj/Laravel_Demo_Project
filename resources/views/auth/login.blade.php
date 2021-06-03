@@ -19,7 +19,7 @@
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-          <a href="#" class="h1"><b>Admin</b> E-Shopper</a>
+          <a href="/adminlogin" class="h1"><b>Admin</b> E-Shopper</a>
         </div>
   <!-- /.login-logo -->
         <div class="card">
@@ -87,5 +87,6 @@
 <script src="{{ ('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ ('dist/js/adminlte.min.js') }}"></script>
+
 </body>
 </html>

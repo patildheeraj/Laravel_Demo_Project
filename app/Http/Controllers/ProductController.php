@@ -7,6 +7,7 @@ use App\Models\DelivaryAddress;
 use App\Models\FrontUser;
 use App\Models\Order;
 use App\Models\Product;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -65,8 +66,8 @@ class ProductController extends Controller
         $product->description = $description;
         $product->care = $care;
         $product->save();
-
-        return redirect('admin/product-list')->with('pass', 'Product Added Successfully!!!');
+        Toastr::success('Product Added Successfully!!');
+        return redirect('admin/product-list');
     }
 
     public function editProduct($id)
@@ -105,8 +106,8 @@ class ProductController extends Controller
         $product->description = $description;
         $product->care = $care;
         $product->save();
+        Toastr::success('Product Updated Successfully');
         return redirect()->route('product.fetch');
-        return back()->with('product_update', 'Product Updated Successfully!!');
     }
 
     public function deleteProduct($id)
@@ -114,7 +115,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         unlink(public_path('product_images') . '/' . $product->pimage);
         $product->delete();
-        return back()->with('product_deleted', 'Product Deleted Successfully!!');
+        Toastr::error('Product Deleted Successfully');
+        return back();
     }
 
     public function viewOrder()
@@ -159,7 +161,8 @@ class ProductController extends Controller
         Mail::send('emails.order_status', $messageData, function ($message) use ($email) {
             $message->to($email)->subject('Order Status Update- E-shopper Website');
         });
-        return back()->with('success', 'Order status update successfully!!');
+        Toastr::success('Order status update successfully!!', 'Success');
+        return back();
     }
 
     public function orderInvoice($id)

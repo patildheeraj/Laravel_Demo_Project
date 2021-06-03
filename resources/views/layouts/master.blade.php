@@ -129,7 +129,7 @@
               </li>
             </ul>
           </li>
-        <li class="nav-item @yield('menu')">
+          <li class="nav-item @yield('menu')">
             <a href="#" class="nav-link @yield('category')">
               <i class="nav-icon fas fa-list"></i>
               <p>
@@ -174,51 +174,6 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item @yield('user_menu')">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                User Management
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('user.add') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('user.fetch') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('configuration.edit') }}" class="nav-link @yield('configuration')">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
-                 Configuration
-              </p>
-            </a>
-            {{-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('configuration.add') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Configuration</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('configuration.fetch') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Configuration List</p>
-                </a>
-              </li>
-            </ul> --}}
           </li>
           <li class="nav-item @yield('banner_menu')">
             <a href="#" class="nav-link @yield('banner')">
@@ -317,6 +272,37 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('configuration.edit') }}" class="nav-link @yield('configuration')">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                 Configuration
+              </p>
+            </a>
+          </li>
+          <li class="nav-item @yield('user_menu')">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                User Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('user.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('user.fetch') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
             <a href="{{ url('/admin/reports') }}" class="nav-link @yield('report')">
               <i class="fa fa-recycle"></i>
               <p>
@@ -413,6 +399,8 @@
     });
   });
 </script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
 
 </body>
 </html>

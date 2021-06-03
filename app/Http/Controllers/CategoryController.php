@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,14 +66,16 @@ class CategoryController extends Controller
         $category->parent_category_id = $parent_category_id;
         $category->category_image = $imageName;
         $category->save();
-        return redirect('/admin/category-list')->with('category_added', 'Category added successfully!!');
+        Toastr::success('Category added successfully :)', 'Success');
+        return redirect('/admin/category-list');
     }
 
     public function deleteCategory($cid)
     {
         $category = Category::find($cid);
         $category->delete();
-        return back()->with('category_deleted', 'Category Deleted Successfully');
+        Toastr::error('Category Deleted Successfully');
+        return back();
     }
 
     public function editCategory($id)
@@ -115,6 +118,7 @@ class CategoryController extends Controller
         $category->parent_category_id = $parent_category_id;
         $category->category_image = $imageName;
         $category->save();
-        return redirect('/admin/category-list')->with("category_updated", 'Category Updated Successfully!!');
+        Toastr::success('Category Updated Successfully');
+        return redirect('/admin/category-list');
     }
 }

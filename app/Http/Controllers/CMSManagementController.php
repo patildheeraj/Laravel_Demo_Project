@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\CMSManagement;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,6 +42,7 @@ class CMSManagementController extends Controller
         // echo '<pre>';
         // print_r(json_decode(json_encode($cms)));
         // die();
+        Toastr::success('CMS Page added successfully!!');
         return redirect('/admin/list-cms-page')->with('success', 'CMS Page added successfully!!');
     }
 
@@ -63,7 +65,8 @@ class CMSManagementController extends Controller
         }
 
         $cms->save();
-        return redirect('/admin/list-cms-page')->with('success', 'CMS Page Updated successfully!!');
+        Toastr::success('CMS Page Updated successfully!!');
+        return redirect('/admin/list-cms-page');
         // echo '<pre>';
         // print_r(json_decode(json_encode($cms)));
         // die();
@@ -72,6 +75,7 @@ class CMSManagementController extends Controller
     public function deleteCMSPage($id)
     {
         CMSManagement::find($id)->delete();
+        Toastr::error('CMS Page deleted successfully!!');
         return redirect('/admin/list-cms-page')->with('success', 'CMS Page deleted successfully!!');
     }
 

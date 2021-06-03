@@ -81,3 +81,8 @@
     </section>
 </div>
 @endsection
+@if (Session::has('category_added'))
+<script>
+    toastr.success("{!! Session::get('category_added') !!}")
+</script>
+@endif

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
@@ -50,8 +51,8 @@ class BannerController extends Controller
         $model->link = $link;
         $model->bimage = $imageName;
         $model->save();
-
-        return back()->with('product_added', 'Banner Added Successfully!!!');
+        Toastr::success('Banner Added Successfully');
+        return redirect()->route('Banner.fetch');
     }
 
     public function editBanner($id)
@@ -82,8 +83,8 @@ class BannerController extends Controller
         $model->link = $link;
         $model->bimage = $imageName;
         $model->save();
+        Toastr::success('Banner Updated Successfully');
         return redirect()->route('Banner.fetch');
-        return back()->with('product_update', 'Banner Updated Successfully!!');
     }
 
     public function deleteBanner($id)
@@ -91,6 +92,7 @@ class BannerController extends Controller
         $data = Banner::find($id);
         unlink(public_path('banner_images') . '/' . $data->bimage);
         $data->delete();
-        return back()->with('product_deleted', 'Banner Deleted Successfully!!');
+        Toastr::error('Banner Deleted Successfully');
+        return back();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -29,14 +30,6 @@ class CouponController extends Controller
                 'date' => 'required',
                 'status' => 'required',
             ],
-            // [
-            //     'pname.required' => '**Product Name is Required',
-            //     'pname.unique' => '**Product name already exist',
-            //     'pprice.required' => '**Product Price is Required',
-            //     'pprice.integer' => '**Price must be number',
-            //     'pcategory.required' => '**Select any one Category',
-            //     'file.required' => '**Image is Required'
-            // ]
         );
 
         $coupon_code = $request->coupon_code;
@@ -54,8 +47,8 @@ class CouponController extends Controller
         $model->Exp_date = $Exp_date;
         $model->status = $status;
         $model->save();
-
-        return back()->with('product_added', 'Coupon Added Successfully!!!');
+        Toastr::success('Coupon Added Successfully');
+        return redirect()->route('coupon.fetch');
     }
 
     public function editCoupon($id)
@@ -81,26 +74,24 @@ class CouponController extends Controller
         $model->Exp_date = $Exp_date;
         $model->status = $status;
         $model->save();
+        Toastr::success('Coupon Updated Successfully');
         return redirect()->route('coupon.fetch');
-        return back()->with('product_update', 'Coupon Updated Successfully!!');
     }
 
     public function deleteCoupon($id)
     {
         $coupon = Coupon::find($id);
         $coupon->delete();
-        return back()->with('product_deleted', 'Coupon Deleted Successfully!!');
+        Toastr::error('Coupon Deleted Successfully');
+        return back();
     }
 
-    public function status(Request $request, $status, $id)
+    public function status($status, $id)
     {
-        // echo $status . $id;
-        // die();
         $model = Coupon::find($id);
         $model->status = $status;
         $model->save();
-        // $request->session()->flash('message', 'Coupon Status Updated');
-        // return redirect('admin/coupon');
-        return back()->with('product_deleted', 'Coupon status updated successfully!!');
+        Toastr::success('Coupon status changed');
+        return back();
     }
 }
