@@ -14,7 +14,8 @@ class CustomerExport implements FromCollection, ShouldAutoSize, WithHeadings
      */
     public function collection()
     {
-        return FrontUser::get();
+        $data = FrontUser::select('id', 'name', 'email', 'mobile', 'address', 'city', 'state', 'country', 'pincode')->get();
+        return $data;
     }
 
     public function headings(): array
@@ -29,13 +30,6 @@ class CustomerExport implements FromCollection, ShouldAutoSize, WithHeadings
             'State',
             'Country',
             'Pincode',
-            'Status',
-            'Google Id',
-            'Facebook Id',
-            'Github Id',
-            'Password',
-            'created_at',
-            'updated_at'
         ];
     }
 }

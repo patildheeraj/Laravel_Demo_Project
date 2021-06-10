@@ -14,23 +14,19 @@ class OrderExport implements FromCollection, ShouldAutoSize, WithHeadings
      */
     public function collection()
     {
-        return OrderProduct::get();
+        $data = OrderProduct::select('id','product_code', 'product_name', 'product_price', 'product_image', 'product_qyt')->get();
+        return $data;
     }
 
     public function headings(): array
     {
         return [
             '#',
-            'order_id',
-            'user_id',
-            'product_id',
             'product_code',
             'product_name',
             'product_price',
             'product_image',
             'product_quantity',
-            'created_at',
-            'updated_at'
         ];
     }
 }

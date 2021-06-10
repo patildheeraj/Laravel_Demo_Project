@@ -14,7 +14,8 @@ class CouponExport implements FromCollection, ShouldAutoSize, WithHeadings
      */
     public function collection()
     {
-        return Coupon::get();
+        $data = Coupon::select('id', 'coupon_code', 'coupon_type', 'coupon_value', 'minimum_purchase', 'Exp_date','status')->get();
+        return $data;
     }
 
     public function headings(): array
@@ -27,8 +28,6 @@ class CouponExport implements FromCollection, ShouldAutoSize, WithHeadings
             'Minimum Purchase Amount',
             'Coupon Expire Date',
             'Status',
-            'created_at',
-            'updated_at'
         ];
     }
 }

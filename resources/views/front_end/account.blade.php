@@ -57,7 +57,7 @@
                             </select>
                             <input type="text" name="pincode" placeholder="Enter pincode" value="{{ $user->pincode }}">
 							<button type="submit" class="btn btn-default" id="btn1">Submit info</button>
-							Don't have a account? <a href="{{ url('/register') }}" class="mt-3"><Strong>Register now!</Strong></a>
+							Create a new account? <a href="{{ url('/register') }}" class="mt-3"><Strong>Register now!</Strong></a>
 						</form>
 					</div><!--/sign up form-->
 				</div>
