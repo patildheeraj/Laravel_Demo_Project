@@ -13,7 +13,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Welcome {{ Session::get('Logged_Email') }}</a>
+          <a href="{{ url('/admin') }}" class="d-block">Welcome {{ Session::get('Logged_Email') }}</a>
         </div>
       </div>
 
@@ -22,7 +22,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item ">
+          <li class="nav-item @yield('dashboard_menu')">
             <a href="#" class="nav-link @yield('dashboard')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -34,7 +34,7 @@
               <li class="nav-item">
                 <a href="/admin" class="nav-link  @yield('dashboard')">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Admin Dashboard</p>
                 </a>
               </li>
             </ul>
